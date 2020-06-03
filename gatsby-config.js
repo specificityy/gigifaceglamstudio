@@ -2,9 +2,8 @@ require('dotenv').config();
 
 module.exports = {
     siteMetadata: {
-        title: 'Kaizen Farms',
-        description:
-            'Dominican Producers and Exporters. Producing various types of peppers, coconut, avocado, mango, ginger, banana, pineapple, among others.',
+        title: 'Gigi Face Glam',
+        description: 'Professional makeup artist',
     },
     plugins: [
         'gatsby-plugin-react-helmet',

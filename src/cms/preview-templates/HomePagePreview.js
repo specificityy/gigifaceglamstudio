@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 
 import { HomePageTemplate } from '../../templates/home-page';
 
-const HomePagePreview = ({ entry, getAsset }) => {
+const HomePagePreview = ({ entry }) => {
+    const entryPictures = entry.getIn(['data', 'pictures']);
+    const pictures = entryPictures ? entryPictures.toJS() : [];
+
     return (
         <HomePageTemplate
-            pageName={entry.getIn(['data', 'pageName'])}
             heading={entry.getIn(['data', 'heading'])}
             description={entry.getIn(['data', 'description'])}
-            backgroundHome={getAsset(entry.getIn(['data', 'backgroundHome']))}
+            pictures={pictures}
         />
     );
 };
@@ -18,7 +20,6 @@ HomePagePreview.propTypes = {
     entry: PropTypes.shape({
         getIn: PropTypes.func,
     }),
-    getAsset: PropTypes.func,
 };
 
 export default HomePagePreview;

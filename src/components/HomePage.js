@@ -11,9 +11,19 @@ const useHomepage = () => {
             {
                 markdownRemark(frontmatter: { templateKey: { eq: "home-page" } }) {
                     frontmatter {
-                        pageName
                         heading
                         description
+                        pictures {
+                            caption
+                            description
+                            image {
+                                childImageSharp {
+                                    fluid(maxWidth: 2000, quality: 90) {
+                                        ...GatsbyImageSharpFluid
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

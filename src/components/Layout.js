@@ -45,9 +45,7 @@ const TemplateWrapper = ({ children }) => {
 
             <GlobalStyles />
 
-            <StyledContent navOpen={navOpen} ref={contentRef}>
-                {children}
-            </StyledContent>
+            {children}
         </>
     );
 };

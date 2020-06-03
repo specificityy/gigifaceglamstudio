@@ -21,7 +21,6 @@ collections:
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'home-page' },
-                    { label: 'Page Name', name: 'pageName', widget: 'string' },
                     { label: 'Heading', name: 'heading', widget: 'string' },
                     { label: 'Description', name: 'description', widget: 'markdown' },
                     {
