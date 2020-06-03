@@ -4,13 +4,9 @@ import { withPrefix } from 'gatsby';
 /** @jsx jsx */
 import { Global, css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
-import { BackTop } from 'antd';
 
 import { cssReset } from './cssReset';
 import useSiteMetadata from './SiteMetadata';
-import { Parallax } from './Parallax';
-import { Footer } from '../components/Footer';
-import Navbar from '../components/Navbar';
 
 const vw = v => {
     const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -46,44 +42,21 @@ const TemplateWrapper = ({ children }) => {
                 <meta property="og:url" content="/" />
                 <meta property="og:image" content={`${withPrefix('/')}img/og-image.jpg`} />
             </Helmet>
-            <GlobalStyles />
 
-            <Navbar
-                onOpen={handleNavOpen}
-                onClose={handleNavClose}
-                open={navOpen}
-                maxWidth={maxNavbarWidth}
-                contentRef={contentRef}
-            />
+            <GlobalStyles />
 
             <StyledContent navOpen={navOpen} ref={contentRef}>
                 {children}
-                <Footer />
-
-                <BackTop name="back-top">
-                    <StyledUp>UP</StyledUp>
-                </BackTop>
             </StyledContent>
         </>
     );
 };
 
-const StyledContent = styled(Parallax)`
+const StyledContent = styled.div`
     background: white;
     color: #1c1c1c;
     transition: transform 300ms;
     ${props => (props.navOpen ? `transform: translateX(-${Math.min(maxNavbarWidth, vw(40))}px);` : '')}
-`;
-
-const StyledUp = styled.div`
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
-    border-radius: 4px;
-    background-color: #1088e9;
-    color: #fff;
-    text-align: center;
-    font-size: 14px;
 `;
 
 export const GlobalStyles = () => {

@@ -12,80 +12,27 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-    - name: pages
-      label: Pages
+    - name: 'pages'
+      label: 'Pages'
       files:
-          - file: src/pages/home/index.md
-            label: Home
-            name: home
+          - file: 'src/pages/home/index.md'
+            label: 'Home'
+            name: 'home'
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'home-page' },
-                    { label: 'Page Name', name: pageName, widget: string },
-                    { label: Heading, name: heading, widget: string },
-                    { label: Description, name: description, widget: text },
-                    { label: 'Background Home', name: backgroundHome, widget: image },
-                ]
-          - file: src/pages/footer/index.md
-            label: Footer
-            name: footer
-            fields:
-                [
-                    { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'footer' },
-                    { label: 'Page Name', name: pageName, widget: string },
-                    { label: Description, name: description, widget: text },
-                    { label: 'Social Media Heading', name: socialMediaHeading, widget: string },
-                    { label: 'Instagram Link', name: instagramLink, widget: string },
-                    { label: 'Facebook Link', name: facebookLink, widget: string },
-                    { label: 'Twitter Link', name: twitterLink, widget: string },
-                    { label: 'LinkedIn Link', name: linkedinLink, widget: string },
-                    { label: 'Contact Heading', name: contactHeading, widget: string },
-                    { label: Email, name: email, widget: string },
-                    { label: Telephones, name: telephones, widget: list, fields: [{ label: Number, name: number }] },
-                ]
-          - file: src/pages/about/index.md
-            label: About
-            name: about
-            fields:
-                [
-                    { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page' },
                     { label: 'Page Name', name: 'pageName', widget: 'string' },
                     { label: 'Heading', name: 'heading', widget: 'string' },
-                    { label: 'Subheading', name: 'subheading', widget: 'string' },
                     { label: 'Description', name: 'description', widget: 'markdown' },
-                    { label: 'Background About', name: 'backgroundAbout', widget: 'image' },
-                ]
-          - file: src/pages/products/index.md
-            label: Products
-            name: products
-            fields:
-                [
-                    { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'products-page' },
-                    { label: 'Page Name', name: pageName, widget: string },
-                    { label: Heading, name: heading, widget: string },
-                    { label: Subheading, name: subheading, widget: string },
-                    { label: Description, name: description, widget: markdown },
-                    { label: 'Background Products', name: backgroundProducts, widget: image },
                     {
-                        label: Products,
-                        name: products,
-                        widget: list,
+                        label: 'Pictures',
+                        name: 'pictures',
+                        widget: 'list',
                         fields:
                             [
-                                { label: title, name: title, widget: string },
-                                { label: Description, name: description, widget: markdown },
-                                { label: Image, name: image, widget: image },
+                                { label: 'Caption', name: 'caption', widget: 'string' },
+                                { label: 'Description', name: 'description', widget: markdown },
+                                { label: 'Image', name: 'image', widget: 'image' },
                             ],
                     },
-                ]
-          - file: src/pages/services/index.md
-            label: Services
-            name: services
-            fields:
-                [
-                    { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'services-page' },
-                    { label: 'Page Name', name: pageName, widget: string },
-                    { label: Heading, name: heading, widget: string },
-                    { label: Subheading, name: subheading, widget: string },
-                    { label: Description, name: description, widget: markdown },
                 ]

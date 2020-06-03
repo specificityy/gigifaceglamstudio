@@ -14,13 +14,6 @@ const useHomepage = () => {
                         pageName
                         heading
                         description
-                        backgroundHome {
-                            childImageSharp {
-                                fluid(maxWidth: 2000, quality: 50) {
-                                    ...GatsbyImageSharpFluid
-                                }
-                            }
-                        }
                     }
                 }
             }
