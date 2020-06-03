@@ -13,15 +13,8 @@ const vw = v => {
     return (v * w) / 100;
 };
 
-const maxNavbarWidth = 400;
-
 const TemplateWrapper = ({ children }) => {
     const { title, description } = useSiteMetadata();
-    const [navOpen, setNavOpen] = useState(false);
-    const contentRef = React.useRef(null);
-
-    const handleNavOpen = () => setNavOpen(true);
-    const handleNavClose = () => setNavOpen(false);
 
     return (
         <>
@@ -50,21 +43,14 @@ const TemplateWrapper = ({ children }) => {
     );
 };
 
-const StyledContent = styled.div`
-    background: white;
-    color: #1c1c1c;
-    transition: transform 300ms;
-    ${props => (props.navOpen ? `transform: translateX(-${Math.min(maxNavbarWidth, vw(40))}px);` : '')}
-`;
-
 export const GlobalStyles = () => {
     return (
         <Global
             styles={css`
-                @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@100;300;400;700;800&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700;800&display=swap');
                 ${cssReset}
                 * {
-                    font-family: 'Quicksand', sans-serif;
+                    font-family: 'Montserrat', sans-serif;
                 }
             `}
         />

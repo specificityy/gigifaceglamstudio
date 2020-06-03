@@ -68,15 +68,12 @@ const Picture = ({ image, caption }) => {
     });
 
     const scale = clamp(entry?.intersectionRatio > 0.6 ? 1 : entry?.intersectionRatio, 0.9, 1);
+    const opacity = clamp(entry?.intersectionRatio > 0.6 ? 1 : entry?.intersectionRatio, 0.3, 1);
 
     console.log(caption, scale, entry?.intersectionRatio);
 
-    const style = {
-        // transform
-    };
-
     return (
-        <ImageWrapper ref={ref} scale={scale}>
+        <ImageWrapper ref={ref} scale={scale} opacity={opacity}>
             <BackgroundImage imageInfo={image} style={{ borderRadius: '10px' }} />
             <h3>{caption}</h3>
         </ImageWrapper>
@@ -84,8 +81,9 @@ const Picture = ({ image, caption }) => {
 };
 
 const ImageWrapper = styled.div`
-    transition: transform 1000ms;
+    transition: transform 1000ms, opacity 1000ms;
     transform: ${props => `scale(${props.scale})`};
+    opacity: ${props => `${props.opacity}`};
     will-change: transform;
 `;
 
@@ -117,7 +115,7 @@ const SlidesShow = styled.div`
     display: flex;
     align-items: center;
     margin: 0 100px;
-    padding-right: 20vw;
+    padding-right: 2vw;
     & > * {
         flex: 1 0 auto;
         margin-right: 100px;
