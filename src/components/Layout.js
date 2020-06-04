@@ -47,10 +47,15 @@ export const GlobalStyles = () => {
     return (
         <Global
             styles={css`
-                @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700;800&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@100;300;400;700;800&family=Lobster+Two:wght@100;300;400;700;800&display=swap');
                 ${cssReset}
                 * {
-                    font-family: 'Montserrat', sans-serif;
+                    font-family: 'Comfortaa', sans-serif;
+                }
+                h1,
+                h2,
+                h3 {
+                    font-family: 'Lobster Two', sans-serif;
                 }
             `}
         />
