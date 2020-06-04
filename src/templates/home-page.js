@@ -44,27 +44,13 @@ export const HomePageTemplate = ({ heading, description, pictures }) => {
             <Container ref={content}>
                 <h1 style={{ position: 'fixed', left: '10vw', top: '100px' }}>{pos}</h1>
                 <SlidesShow>
-                    <About>
-                        <h1>Gigi Face Glam Studio</h1>
-                        <p>💄 Maquillista profesional 🇩🇴 </p>
-                        <p>💇Depilación y tintado de cejas </p>
-                        <p>♦️Postura de Pestañas </p>
-                        <p>🔶Depilación corporal </p>
-                        <p>youtu.be/7GsteKPkL-E</p>
-                        <SocialMedia>
-                            Follow me on
-                            <br />
-                            <br />
-                            <Instagram />
-                            <YouTube />
-                        </SocialMedia>
-                    </About>
-                    {/* <Frame /> */}
+                    <WhoAmI />
                     <Mirror />
 
                     {pictures.map(pic => (
                         <Picture key={uuidv4()} image={pic.image} caption={pic.caption} />
                     ))}
+                    <WhoAmI />
                 </SlidesShow>
             </Container>
         </ThemeProvider>
@@ -77,7 +63,8 @@ const Mirror = styled(MirrorSvg)`
     left: 50%;
     transform: translateX(-50%) scale(0.7);
     z-index: 10;
-    box-shadow: ${props => props.theme.shadows[24]};
+    box-shadow: 0px 11px 15px -7px rgba(250, 250, 50, 0.2), 0px 24px 38px 3px rgba(250, 250, 50, 0.14),
+        0px 9px 48px 13px rgba(250, 250, 50, 0.12);
 
     * g {
         rect {
@@ -88,75 +75,43 @@ const Mirror = styled(MirrorSvg)`
     }
 `;
 
-const Frame = styled(props => {
-    return (
-        <div className="hero-home-oct-19__website__wrapper scroll-in" {...props}>
-            <div className="browser-dots">
-                <div className="dot one"></div>
-                <div className="dot two"></div>
-                <div className="dot three"></div>
-            </div>
-            <div className="frame-border">
-                <div className="border__top"></div>
-                <div className="border__right"></div>
-                <div className="border__bottom"></div>
-                <div className="border__left"></div>
-            </div>
-        </div>
-    );
-})`
-    width: 60vw;
-    height: 65vh;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-
-    & .frame-border {
-        box-shadow: inset 0 0 0 15px #ddd;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-    }
-
-    & .browser-dots {
-    }
-
-    & .dot {
-        height: 20px;
-        width: 20px;
-        margin-right: 7px;
-        background-color: #ddd;
-        border-radius: 50%;
-        display: inline-block;
-
-        & .one {
-        }
-    }
-`;
-
 const Picture = ({ image, caption }) => {
     const [ref, entry] = useIntersection({
-        rootMargin: '-5%',
+        rootMargin: '0px',
         threshold: thresholdArray,
     });
 
     const { intersectionRatio = 1 } = entry || {};
-    const scale = clamp(intersectionRatio > 0.6 ? 1 : intersectionRatio, 0.9, 1);
+    const scale = clamp(intersectionRatio > 0.8 ? 1 : intersectionRatio, 0.9, 1);
     const opacity = clamp(intersectionRatio > 0.6 ? 1 : intersectionRatio, 0.3, 1);
 
     console.log(caption, scale, intersectionRatio);
 
     return (
-        <ImageWrapper ref={ref} scale={scale} opacity={opacity}>
-            <BackgroundImage imageInfo={image} style={{ borderRadius: '10px' }} />
-            <h3>{caption}</h3>
-        </ImageWrapper>
+        <>
+            <ImageWrapper ref={ref} scale={scale} opacity={scale === 1 ? 0 : 0.5}>
+                <BackgroundImage imageInfo={image} />
+                <h3>{caption}</h3>
+            </ImageWrapper>
+            {scale === 1 ? (
+                <DisplayedImage>
+                    <BackgroundImage imageInfo={image} />
+                    <h3>{caption}</h3>
+                </DisplayedImage>
+            ) : null}
+        </>
     );
 };
 
+const DisplayedImage = styled.div`
+    position: fixed;
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-50%);
+`;
+
 const ImageWrapper = styled.div`
-    transition: transform 1000ms, opacity 1000ms;
+    transition: transform 300ms, opacity 1000ms;
     transform: ${props => `scale(${props.scale})`};
     opacity: ${props => `${props.opacity}`};
     will-change: transform;
@@ -164,8 +119,8 @@ const ImageWrapper = styled.div`
 
 const BackgroundImage = styled(PreviewCompatibleBackgroundImage)`
     ${props => `
-    width: 55vw;
-    height: 55vh;
+    width: 50vw;
+    height: 50vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -178,13 +133,15 @@ const BackgroundImage = styled(PreviewCompatibleBackgroundImage)`
 
 const Container = styled.main`
     height: 100vh;
-    background-image: radial-gradient(#ddd 1px, transparent 0), radial-gradient(#ddd 1px, transparent 0);
+    background-image: radial-gradient(#333 1px, transparent 0), radial-gradient(#333 1px, transparent 0);
     background-position: 0 0, 25px 25px;
     background-attachment: fixed;
     background-size: 50px 50px;
-    background-color: palevioletred;
     overflow-x: scroll;
     display: flex;
+
+    color: wheat;
+    background-color: #1d1d1d;
 `;
 
 const SlidesShow = styled.div`
@@ -199,6 +156,7 @@ const SlidesShow = styled.div`
 `;
 
 const About = styled.div`
+    margin-right: 10rem;
     & > * {
         margin-bottom: 1rem;
     }
@@ -224,6 +182,24 @@ const YouTube = styled(YouTubeIcon)`
     width: 100px;
     height: 90px;
 `;
+
+const WhoAmI = () => (
+    <About>
+        <h1>Gigi Face Glam Studio</h1>
+        <p>💄 Maquillista profesional 🇩🇴 </p>
+        <p>💇Depilación y tintado de cejas </p>
+        <p>♦️Postura de Pestañas </p>
+        <p>🔶Depilación corporal </p>
+        <p>youtu.be/7GsteKPkL-E</p>
+        <SocialMedia>
+            Follow me on
+            <br />
+            <br />
+            <Instagram />
+            <YouTube />
+        </SocialMedia>
+    </About>
+);
 
 HomePageTemplate.propTypes = {
     heading: PropTypes.string.isRequired,
